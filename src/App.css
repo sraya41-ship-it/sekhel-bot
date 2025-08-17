@@ -1,78 +1,48 @@
-.App {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #f5f5f5;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+:root{
+  --bg:#0b1220;            /* רקע כהה אלגנטי */
+  --panel:#101826;         /* פאנל */
+  --bubble:#172033;        /* בועה של הבוט */
+  --bubble-me:#1f6e43;     /* בועה שלי – ירוק חיסכון */
+  --text:#e5e7eb;
+  --muted:#9aa4b2;
+  --accent:#22c55e;        /* ירוק כסף/חסכון */
+  --accent-2:#86efac;
+  --bar:#3b82f6;           /* כחול מקצועי לכותרת */
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 
-h1 {
-  background: #4a90e2;
-  color: white;
-  margin: 0;
-  padding: 15px;
-  font-size: 22px;
-}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0; background:linear-gradient(135deg, #0b1220, #0d1527); color:var(--text); font-family: "Heebo", system-ui, -apple-system, Segoe UI, Roboto, Arial;}
 
-.chat-window {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.app{display:grid; grid-template-rows:auto 1fr auto auto; height:100%}
 
-.chat-message {
-  padding: 10px 15px;
-  border-radius: 15px;
-  max-width: 60%;
-  text-align: left;
-  font-size: 14px;
-  line-height: 1.4;
-}
+/* Header */
+.topbar{background:var(--bar); box-shadow:var(--shadow); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:16px}
+.brand{display:flex; align-items:center; gap:10px}
+.logo{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#052e16; font-weight:900; border-radius:12px; width:44px; height:44px; display:grid; place-items:center}
+.title{font-weight:800; font-size:22px}
+.subtitle{font-size:12px; color:#eef; opacity:.9}
 
-.chat-message.user {
-  align-self: flex-end;
-  background: #d1e7ff;
-  border-bottom-right-radius: 5px;
-}
+/* Chat */
+.chat{padding:16px; overflow:auto; background:radial-gradient(1200px 400px at 80% -50%, rgba(56,189,248,.15), transparent 60%), radial-gradient(900px 300px at 10% -30%, rgba(34,197,94,.12), transparent 55%);}
+.row{display:flex; margin:8px 0}
+.row.bot{justify-content:flex-start}
+.row.user{justify-content:flex-end}
+.bubble{max-width:72%; padding:12px 14px; border-radius:16px; line-height:1.45; box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.row.bot .bubble{background:var(--bubble); border:1px solid rgba(255,255,255,.06)}
+.row.user .bubble{background:var(--bubble-me); border:1px solid rgba(0,0,0,.2)}
+.typing{display:flex; gap:6px}
+.dot{width:6px; height:6px; border-radius:50%; background:#bcd; opacity:.5; animation:blink 1.2s infinite ease-in-out}
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.25} 40%{opacity:1}}
 
-.chat-message.bot {
-  align-self: flex-start;
-  background: #e0e0e0;
-  border-bottom-left-radius: 5px;
-}
+/* Suggestions */
+.suggest{display:flex; flex-wrap:wrap; gap:8px; padding:8px 12px; background:#0f172a; border-top:1px solid rgba(255,255,255,.06)}
+.suggest button{background:#0b2e1b; color:#d1fae5; border:1px solid rgba(34,197,94,.35); padding:8px 10px; border-radius:999px; cursor:pointer; font-size:13px}
 
-.chat-input {
-  display: flex;
-  border-top: 1px solid #ccc;
-  background: white;
-  padding: 10px;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  font-size: 14px;
-}
-
-.chat-input button {
-  margin-left: 10px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background: #4a90e2;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.chat-input button:hover {
-  background: #357abd;
-}
+/* Composer */
+.composer{display:flex; gap:8px; padding:12px; background:#0f172a; border-top:1px solid rgba(255,255,255,.06)}
+.composer input{flex:1; background:#0b1220; color:var(--text); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; outline:none}
+.composer button{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#052e16; font-weight:800; border:none; border-radius:12px; padding:12px 16px; cursor:pointer}
